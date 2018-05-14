@@ -45,7 +45,7 @@ My pipeline consisted of 5 steps.
 ### 3. Suggestion of possible improvements to my pipeline
 
 ### Experimental material
-- - [Color Conversion Test](https://github.com/atinfinity/CarND-LaneLines-P1/blob/master/experimental/Color-Conversion-Test.ipynb)
+- [Color Conversion Test](https://github.com/atinfinity/CarND-LaneLines-P1/blob/master/experimental/Color-Conversion-Test.ipynb)
 
 ### Reference
 - <https://github.com/udacity/CarND-Term1-Starter-Kit>
