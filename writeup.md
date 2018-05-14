@@ -40,7 +40,7 @@ My pipeline consisted of 5 steps.
 
 ### 2. Identification of potential shortcomings with my current pipeline
 - Change of the setting of camera
-- Different　lighting conditions 
+- Different lighting conditions
 
 ### 3. Suggestion of possible improvements to my pipeline
 
