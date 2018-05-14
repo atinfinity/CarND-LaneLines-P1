@@ -1,56 +1,76 @@
 # **Finding Lane Lines on the Road** 
-[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
+## Overview
+When we drive, we use our eyes to decide where to go. The lines on the road that show us where the lanes are act as our constant reference for where to steer the vehicle. Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
 
-<img src="examples/laneLines_thirdPass.jpg" width="480" alt="Combined Image" />
+## Requirements
+I checked this program on Ubuntu 16.04 64bit.  
 
-Overview
----
+- Python 3.x
+- Matplotlib
+- NumPy
+- OpenCV 3.x
+- Docker
+- Jupyter Notebook
 
-When we drive, we use our eyes to decide where to go.  The lines on the road that show us where the lanes are act as our constant reference for where to steer the vehicle.  Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
+## Setup CarND-Term1-Starter-Kit
+### 1. Pull the Precompiled Docker Image from Docker Hub
+```shell
+$ docker pull udacity/carnd-term1-starter-kit
+```
 
-In this project you will detect lane lines in images using Python and OpenCV.  OpenCV means "Open-Source Computer Vision", which is a package that has many useful tools for analyzing images.  
+### 2. Clone CarND-LaneLines-P1 Project
+```shell
+$ git clone https://github.com/atinfinity/CarND-LaneLines-P1.git
+```
 
-To complete the project, two files will be submitted: a file containing project code and a file containing a brief write up explaining your solution. We have included template files to be used both for the [code](https://github.com/udacity/CarND-LaneLines-P1/blob/master/P1.ipynb) and the [writeup](https://github.com/udacity/CarND-LaneLines-P1/blob/master/writeup_template.md).The code file is called P1.ipynb and the writeup template is writeup_template.md 
+### 3. Run The Image as a New Container
+```shell
+$ cd ~/src/CarND-LaneLines-P1
+$ docker run -it --rm -p 8888:8888 -v `pwd`:/src udacity/carnd-term1-starter-kit
+```
 
-To meet specifications in the project, take a look at the requirements in the [project rubric](https://review.udacity.com/#!/rubrics/322/view)
+### 4. Open notebook
+Plese open `P1.ipynb` from your browser.
 
+## My Pipeline
+My pipeline consists of the following processing.
 
-Creating a Great Writeup
----
-For this project, a great writeup should provide a detailed response to the "Reflection" section of the [project rubric](https://review.udacity.com/#!/rubrics/322/view). There are three parts to the reflection:
+1. Extraction of the Lane Color(white and yellow)
+1. Color Conversion(grayscale)
+1. Smoothing
+1. Edge Detection
+1. Region Selection using ROI(Region Of Interest)
+1. Hough Transform
+1. Post-Processing
 
-1. Describe the pipeline
+## Results(Test images)
+### solidWhiteCurve
+<img src="test_images_output/solidWhiteCurve.jpg" width="240" alt="solidWhiteCurve"/>
 
-2. Identify any shortcomings
+### solidWhiteRight
+<img src="test_images_output/solidWhiteRight.jpg" width="240" alt="solidWhiteRight"/>
 
-3. Suggest possible improvements
+### solidYellowCurve
+<img src="test_images_output/solidYellowCurve.jpg" width="240" alt="solidYellowCurve"/>
 
-We encourage using images in your writeup to demonstrate how your pipeline works.  
+### solidYellowCurve2
+<img src="test_images_output/solidYellowCurve2.jpg" width="240" alt="solidYellowCurve2"/>
 
-All that said, please be concise!  We're not looking for you to write a book here: just a brief description.
+### solidYellowLeft
+<img src="test_images_output/solidYellowLeft.jpg" width="240" alt="solidYellowLeft"/>
 
-You're not required to use markdown for your writeup.  If you use another method please just submit a pdf of your writeup. Here is a link to a [writeup template file](https://github.com/udacity/CarND-LaneLines-P1/blob/master/writeup_template.md). 
+### whiteCarLaneSwitch
+<img src="test_images_output/whiteCarLaneSwitch.jpg" width="240" alt="whiteCarLaneSwitch"/>
 
+## Results(Test Videos)
+- [test_videos_output/solidWhiteRight.mp4](https://github.com/atinfinity/CarND-LaneLines-P1/blob/master/test_videos_output/solidWhiteRight.mp4)
+- [test_videos_output/solidYellowLeft.mp4](https://github.com/atinfinity/CarND-LaneLines-P1/blob/master/test_videos_output/solidYellowLeft.mp4)
+- [test_videos_output/challenge.mp4](https://github.com/atinfinity/CarND-LaneLines-P1/blob/master/test_videos_output/challenge.mp4)
 
-The Project
----
+## Experimental material
+- [Color Conversion Test](https://github.com/atinfinity/CarND-LaneLines-P1/blob/master/experimental/Color-Conversion-Test.ipynb)
 
-## If you have already installed the [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) you should be good to go!   If not, you should install the starter kit to get started on this project. ##
-
-**Step 1:** Set up the [CarND Term1 Starter Kit](https://classroom.udacity.com/nanodegrees/nd013/parts/fbf77062-5703-404e-b60c-95b78b2f3f9e/modules/83ec35ee-1e02-48a5-bdb7-d244bd47c2dc/lessons/8c82408b-a217-4d09-b81d-1bda4c6380ef/concepts/4f1870e0-3849-43e4-b670-12e6f2d4b7a7) if you haven't already.
-
-**Step 2:** Open the code in a Jupyter Notebook
-
-You will complete the project code in a Jupyter notebook.  If you are unfamiliar with Jupyter Notebooks, check out <A HREF="https://www.packtpub.com/books/content/basics-jupyter-notebook-and-python" target="_blank">Cyrille Rossant's Basics of Jupyter Notebook and Python</A> to get started.
-
-Jupyter is an Ipython notebook where you can run blocks of code and see results interactively.  All the code for this project is contained in a Jupyter notebook. To start Jupyter in your browser, use terminal to navigate to your project directory and then run the following command at the terminal prompt (be sure you've activated your Python 3 carnd-term1 environment as described in the [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) installation instructions!):
-
-`> jupyter notebook`
-
-A browser window will appear showing the contents of the current directory.  Click on the file called "P1.ipynb".  Another browser window will appear displaying the notebook.  Follow the instructions in the notebook to complete the project.  
-
-**Step 3:** Complete the project and submit both the Ipython notebook and the project writeup
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
-
+## Reference
+- <https://github.com/udacity/CarND-Term1-Starter-Kit>
+- <https://github.com/udacity/CarND-LaneLines-P1>
+- <https://en.wikipedia.org/wiki/HSL_and_HSV>
