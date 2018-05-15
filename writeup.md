@@ -37,8 +37,11 @@ So, I tried the following colorspace.
 And, I confirmed which one of HSV and HLS is suitable to extract the color of lane.  
 This experiment is written in [experimental/Color-Conversion-Test.ipynb](https://github.com/atinfinity/CarND-LaneLines-P1/blob/master/experimental/Color-Conversion-Test.ipynb)
 
+| ![input](images/solidYellowLeft.jpg)| ![HSV](images/hsv.png)| ![output](images/hls.png)|
+|:--:|:--:|:--:|
+| input | HSV | HLS |
 
-
+As a result, I think that road surface and white lane have similar value on HSV color space.  
 From these results, I think that HLS colorspace is suitable to extract the color(white, yellow) of lane.  
 And, `Extraction of the Lane Color` has the following processing.
 
@@ -120,12 +123,20 @@ So, I calculated average slope and intercept for the left and right lanes
 | input | output |
 
 ### 2. Identification of potential shortcomings with my current pipeline
-#### A. Change of the setting of camera
-#### B. Different lighting conditions
+
+I think that my current pipeline has shortcoming the following case.
+
+#### A. curvy lanes
+#### B. change of the setting of camera
+#### C. different lighting conditions
 
 ### 3. Suggestion of possible improvements to my pipeline
+I suggest improvements to overcome mentioned problems.
+
 #### A-1
 #### B-1
+#### C-1
+
 ### Experimental material
 - [Color Conversion Test](https://github.com/atinfinity/CarND-LaneLines-P1/blob/master/experimental/Color-Conversion-Test.ipynb)
 
@@ -138,3 +149,4 @@ So, I calculated average slope and intercept for the left and right lanes
 - [6] <https://docs.opencv.org/3.4.1/da/d5c/tutorial_canny_detector.html>
 - [7] <https://en.wikipedia.org/wiki/Hough_transform>
 - [8] <https://docs.opencv.org/3.4.1/d9/db0/tutorial_hough_lines.html>
+- [9] <https://arxiv.org/pdf/1501.03124.pdf>
