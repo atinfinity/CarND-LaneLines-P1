@@ -94,7 +94,7 @@ def canny(img, low_threshold, high_threshold):
 | input | output |
 
 #### Region Selection using ROI(Region Of Interest)
-I'll assume that the front facing camera that took the image is mounted in a fixed position on the car, it is possible to effectively reduce the search region of lane.
+I assume that the front facing camera that took the image is mounted in a fixed position on the car, it is possible to effectively reduce the search region of lane.
 
 | ![input](images/edges.png)| ![output](images/masked_edges.png)|
 |:--:|:--:|
@@ -127,11 +127,25 @@ So, I calculated average slope and intercept for the left and right lanes
 I think that my current pipeline has shortcoming the following case.
 
 #### A. curvy lanes
+My current pipeline assumes a lane close to a straight line.  
+So, It can be detected by `Hough Transform`.  
+
+But, there is also curvy lanes in the real world.  
+I think that `Hough Transform` can not handle in this case.
+
 #### B. change of the setting of camera
+I assumed that the front facing camera that took the image is mounted in a fixed position on the car. So, we can select the region fixed ROI. 
+
+But, the position of the camera may move during driving.  
+I think that my current pipeline can not handle suitable ROI in this case.
+
 #### C. different lighting conditions
+Current test data consists only of daytime and fine weather scenes.  
+So, parameters of `Color Selection` are specialized in this case.  
+I think that my current pipeline can not handle scene has different lighting conditions.
 
 ### 3. Suggestion of possible improvements to my pipeline
-I suggest improvements to overcome mentioned problems.
+I suggest improvements to overcome mentioned shortcomings.
 
 #### A-1
 #### B-1
