@@ -35,13 +35,15 @@ Plese open `P1.ipynb` from your browser.
 ## My Pipeline
 My pipeline consists of the following processing.
 
-1. Extraction of the Lane Color(white and yellow)
+1. Extraction of the Lane Color(white, yellow)
 1. Color Conversion(grayscale)
 1. Smoothing
 1. Edge Detection
-1. Region Selection using ROI(Region Of Interest)
-1. Hough Transform
+1. Region Selection
+1. Line Detection
 1. Post-Processing
+
+Please read [writeup.md](https://github.com/atinfinity/CarND-LaneLines-P1/blob/master/writeup.md) for details.
 
 ## Results(Test images)
 ### solidWhiteCurve
