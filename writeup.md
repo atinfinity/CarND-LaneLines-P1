@@ -70,7 +70,8 @@ def grayscale(img):
 
 #### Smoothing
 I applied `Gaussian Blur` before Edge Detection.  
-Because, `Gaussian Blur` has the effect of reducing pepper noise.
+Because, `Gaussian Blur` has the effect of reducing pepper noise.  
+By this processing, the result of edge detection can be stabilized.
 
 ```python
 def gaussian_blur(img, kernel_size):
@@ -101,7 +102,7 @@ I assume that the front facing camera that took the image is mounted in a fixed 
 | input | output |
 
 #### Hough Transform
-I applied `Hough Transform`[7] to extract lines of lane.
+I applied `Hough Transform`[7][8] to extract lines of lane.
 
 ```python
 def hough_lines(img, rho, theta, threshold, min_line_len, max_line_gap):
@@ -124,32 +125,32 @@ So, I calculated average slope and intercept for the left and right lanes
 
 ### 2. Identification of potential shortcomings with my current pipeline
 
-I think that my current pipeline has shortcoming the following case.
+I think that my current pipeline has shortcoming in the following case.
 
-#### A. curvy lanes
-My current pipeline assumes a lane close to a straight line.  
-So, It can be detected by `Hough Transform`.  
+#### Shortcoming A: case of curvy lanes
+My current pipeline assumes a lane close to a straight line. So, It can be detected by `Hough Transform`.  
 
-But, there is also curvy lanes in the real world.  
-I think that `Hough Transform` can not handle in this case.
+But, there is also curvy lanes in the real world. I think that `Hough Transform` can not handle in this case.
 
-#### B. change of the setting of camera
+#### Shortcoming B: change of the position of camera
 I assumed that the front facing camera that took the image is mounted in a fixed position on the car. So, we can select the region fixed ROI. 
 
-But, the position of the camera may move during driving.  
-I think that my current pipeline can not handle suitable ROI in this case.
+But, the position of the camera may move during driving.I think that my current pipeline can not handle suitable ROI in this case.
 
-#### C. different lighting conditions
-Current test data consists only of daytime and fine weather scenes.  
-So, parameters of `Color Selection` are specialized in this case.  
-I think that my current pipeline can not handle scene has different lighting conditions.
+#### Shortcoming C: different lighting conditions
+Current test data consists only of daytime and fine weather scenes.  So, parameters of `Color Selection` are specialized in this case. I think that my current pipeline can not handle scene has different lighting conditions.
 
 ### 3. Suggestion of possible improvements to my pipeline
 I suggest improvements to overcome mentioned shortcomings.
 
-#### A-1
-#### B-1
-#### C-1
+#### Solution A
+I think that it becomes easier to handle the features of the lane shape by converting of Bird Eye View[9].
+
+#### Solution B
+I think that it is possible to select the region of road surface dynamically using the result of Free Space Detection.
+
+#### Solution C
+I think that it can be improved by changing parameters according to time and weather. And, I think that gamma correction and histogram equalization will work effectively especially in night scenes[10].
 
 ### Experimental material
 - [Color Conversion Test](https://github.com/atinfinity/CarND-LaneLines-P1/blob/master/experimental/Color-Conversion-Test.ipynb)
@@ -164,3 +165,4 @@ I suggest improvements to overcome mentioned shortcomings.
 - [7] <https://en.wikipedia.org/wiki/Hough_transform>
 - [8] <https://docs.opencv.org/3.4.1/d9/db0/tutorial_hough_lines.html>
 - [9] <https://arxiv.org/pdf/1501.03124.pdf>
+- [10] <https://medium.com/giscle/why-are-we-planing-to-use-deep-learning-and-cascade-particle-filter-for-indian-road-lane-detection-3b922212f807>
