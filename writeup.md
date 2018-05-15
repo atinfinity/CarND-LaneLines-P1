@@ -26,7 +26,7 @@ My pipeline consisted of 5 steps.
 
 #### Extraction of the Lane Color(white and yellow)
 At first, I try to extract the feature of lane to detect lane on road.  
-Then, I'm going to focus on the color(white, yellow) of lane.  
+Then, I'm going to focus on the color(white, yellow) of lane[11][12].  
 However, RGB colorspace isn't suitable for extracting color.  
 
 So, I tried the following colorspace.  
@@ -115,9 +115,9 @@ def hough_lines(img, rho, theta, threshold, min_line_len, max_line_gap):
 | input | output |
 
 #### Post-Processing
-As a result of `Hough Transform`, multiple lines may be detected.    
+As a result of `Hough Transform`, multiple lines may be detected.  
 In this case, we need to extrapolate the line to cover full lane line length.
-So, I calculated average slope and intercept for the left and right lanes
+So, I calculated average slope and intercept for the left and right lanes[11][12].
 
 | ![input](images/line_image.png)| ![output](images/final_result.png)|
 |:--:|:--:|
@@ -166,3 +166,5 @@ I think that it can be improved by changing parameters according to time and wea
 - [8] <https://docs.opencv.org/3.4.1/d9/db0/tutorial_hough_lines.html>
 - [9] <https://arxiv.org/pdf/1501.03124.pdf>
 - [10] <https://medium.com/giscle/why-are-we-planing-to-use-deep-learning-and-cascade-particle-filter-for-indian-road-lane-detection-3b922212f807>
+- [11] <https://towardsdatascience.com/finding-lane-lines-on-the-road-30cf016a1165>
+- [12] <https://github.com/naokishibuya/car-finding-lane-lines>
